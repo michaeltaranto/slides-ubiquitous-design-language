@@ -1,0 +1,11 @@
+<Card>
+  <Text heading>Register</Text>
+  <Text subheading>
+    It&rsquo;ll be be awesome, you know you want to!
+  </Text>
+  <form>
+    <EmailField label="Email" name="email" />
+    <PasswordField label="Password" name="password" />
+    <Button primary>Register</Button>
+  </form>
+</Card>

@@ -1,0 +1,14 @@
+<section class="card">
+  <div class="card-heading">Register</div>
+  <div class="card-subheading">
+    It&rsquo;ll be be awesome, you know you want to!
+  </div>
+  <form>
+    <label class="field-label" for="email">Email</label>
+    <input class="field-input" type="email" id="email" />
+
+    <label class="field-label" for="password">Password</label>
+    <input class="field-input" type="password" id="password" />
+    <button class="button">Register</button>
+  </form>
+</section>
