@@ -1,0 +1,14 @@
+exports[`<Cite /> should render correctly. 1`] = `
+<Cite>
+  <cite
+    data-radium={true}
+    style={
+      Object {
+        "color": "#ee0",
+      }
+    }>
+    - 
+    Someone
+  </cite>
+</Cite>
+`;
