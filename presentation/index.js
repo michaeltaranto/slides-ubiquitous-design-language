@@ -128,13 +128,13 @@ const TextDemo = ({
 };
 
 const TertiaryHeading = ({ children, ...rest }) => (
-  <Heading size={3} lineHeight={1.1} textColor="tertiary" textAlign="left" style={{ margin: 0 }} {...rest}>
+  <Heading size={3} lineHeight={1.1} textColor="tertiary" textAlign="left" margin="0" {...rest}>
     { children }
   </Heading>
 );
 
 const PrimaryHeading = ({ children , ...rest}) => (
-  <Heading size={3} lineHeight={1.1} textColor="primary" textAlign="left" style={{ margin: 0 }} {...rest}>
+  <Heading size={3} lineHeight={1.1} textColor="primary" textAlign="left" margin="0" {...rest}>
     { children }
   </Heading>
 );
@@ -195,9 +195,11 @@ const Avatar = () => {
       background: `url(${images.me}) center center no-repeat #fff`,
       backgroundSize: 'contain',
       width: '10em',
+      maxWidth: '250px',
       height: '10em',
+      maxHeight: '250px',
       borderRadius: '50%',
-      margin: '0 auto 18px'
+      margin: '0 auto'
     }} />
   );
 };
@@ -247,12 +249,12 @@ export default class Presentation extends Component {
           bgImage={images.markedup}
           bgDarken={0.8}
           bgRepeat="repeat,no-repeat"
-          bgPosition="center -260px"
+          bgPosition="center top"
           notes="Wireframes are unfortunately the most common form of communication between design and development">
-          <TertiaryHeading>
+          <TertiaryHeading style={{ fontSize: '2em' }}>
             Most communicating
           </TertiaryHeading>
-          <PrimaryHeading>
+          <PrimaryHeading style={{ fontSize: '2em' }}>
             via wireframes
           </PrimaryHeading>
         </Slide>
@@ -432,15 +434,23 @@ export default class Presentation extends Component {
 
         <Slide
           bgColor="secondary"
-          bgImage={images.form}
-          bgSize="contain"
-          bgRepeat="no-repeat"
-          bgPosition="left bottom"
+          className="fullsize"
           notes="Need to see them as">
-          <Layout>
-            <Fill />
-            <Fill style={{marginLeft: '-5em'}}>
-              <TertiaryHeading>
+          <Layout style={{ flexWrap: 'wrap', height: '100%' }}>
+            <Fill style={{
+              backgroundImage: `url(${images.form})`,
+              backgroundPosition: 'left center',
+              backgroundRepeat: 'no-repeat',
+              backgroundSize: 'cover',
+              flexBasis: '40%'
+            }} />
+            <Fill style={{
+              display: 'flex',
+              alignItems: 'center',
+              padding: '2em',
+              flexBasis: '50%'
+            }}>
+              <TertiaryHeading style={{ fontSize: '3rem', maxWidth: '6em' }}>
                 <S type="underline" textColor="primary">More</S> than buttons & fields
               </TertiaryHeading>
             </Fill>
@@ -788,14 +798,6 @@ export default class Presentation extends Component {
           </TertiaryHeading>
         </Slide>
 
-          {/* <Heading size={5} lineHeight={1.4} textColor="tertiary">
-            Text needs to move down
-          </Heading> */}
-        {/* </Slide> */}
-
-        {/*-------------------------*/}
-        {/*- Aligning expectations -*/}
-        {/*-------------------------*/}
         <Slide
           style={{
             backgroundImage: `linear-gradient(${theme.screen.colors.primary} 50%, ${theme.screen.colors.tertiary} 50%)`
@@ -1005,7 +1007,7 @@ export default class Presentation extends Component {
         </Slide>
 
         <Slide bgColor="secondary" notes="...no additional work for designers to do upfront">
-          <Layout style={{ alignItems: 'center' }}>
+          <Layout style={{ flexWrap: 'wrap', alignItems: 'center' }}>
             <Fill>
               <CodePane lang="css">
                 {
@@ -1018,12 +1020,12 @@ export default class Presentation extends Component {
                 }
               </CodePane>
             </Fill>
-            <Fill style={{ padding: '0 0 0 40px' }}>
+            <Fill style={{ padding: '1em' }}>
               <PrimaryHeading>
-                Calculated
+                Calculated properties<span style={{ color: theme.screen.colors.tertiary }}>,&nbsp;</span>
               </PrimaryHeading>
               <TertiaryHeading>
-                properties, no more translations
+                no more translations
               </TertiaryHeading>
             </Fill>
           </Layout>
@@ -1049,20 +1051,33 @@ export default class Presentation extends Component {
 
         <Slide
           bgColor="secondary"
-          bgImage={images.markedup}
-          bgRepeat="no-repeat"
-          bgSize="60%"
-          bgPosition="-100px -180px"
+          className="fullsize"
           notes="by encapsulating complexity... while saving the designers a lot of time specing">
-          <div style={{ paddingLeft: '65%', marginRight: '-5em' }}>
-            <PrimaryHeading>
-              Reduce time
-            </PrimaryHeading>
-            <TertiaryHeading>
-              spec&rsquo;ing<br/>
-              and nudging
-            </TertiaryHeading>
-          </div>
+          <Layout style={{ flexWrap: 'wrap', height: '100%' }}>
+            <Fill style={{
+              backgroundImage: `url(${images.markedup})`,
+              backgroundPosition: 'top right',
+              backgroundRepeat: 'no-repeat',
+              backgroundSize: 'cover',
+              flexBasis: '40%'
+            }} />
+            <Fill style={{
+              display: 'flex',
+              alignItems: 'center',
+              padding: '2em',
+              flexBasis: '50%'
+            }}>
+              <div>
+                <PrimaryHeading style={{ fontSize: '3rem' }}>
+                  Reduce time
+                </PrimaryHeading>
+                <TertiaryHeading style={{ fontSize: '3rem' }}>
+                  spec&rsquo;ing<br/>
+                  and nudging
+                </TertiaryHeading>
+              </div>
+            </Fill>
+          </Layout>
         </Slide>
 
         <Slide bgColor="secondary">
@@ -1286,7 +1301,7 @@ export default class Presentation extends Component {
               capturing as code allows sharing across teams
             </div>
           )}>
-          <iframe
+          {/* <iframe
             src="https://www.seek.com.au"
             height="100%"
             width="100%"
@@ -1298,16 +1313,40 @@ export default class Presentation extends Component {
               bottom: 0,
               right: 0
             }}
-          />
-          {/* <Heading size={5} lineHeight={1.4} textColor="tertiary">
-            Proof is in <S type="underline"><Link
-            textColor="tertiary"
-            href="https://www.seek.com.au"
-            target="_blank">production</Link></S>
-          </Heading> */}
+          /> */}
         </Slide>
 
         <Slide
+          bgColor="secondary"
+          className="fullsize">
+          <Layout style={{ flexWrap: 'wrap', height: '100%' }}>
+            <Fill style={{
+              backgroundColor: theme.screen.colors.tertiary,
+              flexBasis: '40%',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center'
+            }}>
+              <PrimaryHeading textAlign="center" style={{ fontSize: '3rem' }}>
+                What&rsquo;s worked
+              </PrimaryHeading>
+            </Fill>
+            <Fill style={{
+              display: 'flex',
+              alignItems: 'flex-start',
+              justifyContent: 'center',
+              flexDirection: 'column',
+              padding: '1em',
+              flexBasis: '60%'
+            }}>
+              <TertiaryHeading style={{ fontSize: '2rem' }}>— Components everywhere</TertiaryHeading>
+              <br/>
+              <TertiaryHeading style={{ fontSize: '2rem' }}>— Cross-discipline pairing</TertiaryHeading>
+            </Fill>
+          </Layout>
+        </Slide>
+
+        {/* <Slide
           style={{
             backgroundImage: `linear-gradient(90deg, ${theme.screen.colors.tertiary} 40%, ${theme.screen.colors.secondary} 40%)`
           }}>
@@ -1329,9 +1368,39 @@ export default class Presentation extends Component {
               </Appear>
             </Fill>
           </Layout>
-        </Slide>
+        </Slide> */}
 
         <Slide
+          bgColor="secondary"
+          className="fullsize">
+          <Layout style={{ flexWrap: 'wrap', height: '100%' }}>
+            <Fill style={{
+              backgroundColor: theme.screen.colors.tertiary,
+              flexBasis: '40%',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center'
+            }}>
+              <PrimaryHeading textAlign="center" style={{ fontSize: '3rem' }}>
+                What takes work
+              </PrimaryHeading>
+            </Fill>
+            <Fill style={{
+              display: 'flex',
+              alignItems: 'flex-start',
+              justifyContent: 'center',
+              flexDirection: 'column',
+              padding: '1em',
+              flexBasis: '60%'
+            }}>
+              <TertiaryHeading style={{ fontSize: '2rem' }}>— Naming is hard</TertiaryHeading>
+              <br/>
+              <TertiaryHeading style={{ fontSize: '2rem' }}>— Justifying the &ldquo;why&rdquo;</TertiaryHeading>
+            </Fill>
+          </Layout>
+        </Slide>
+
+        {/* <Slide
           style={{
             backgroundImage: `linear-gradient(90deg, ${theme.screen.colors.tertiary} 40%, ${theme.screen.colors.secondary} 40%)`
           }}>
@@ -1353,7 +1422,7 @@ export default class Presentation extends Component {
               </Appear>
             </Fill>
           </Layout>
-        </Slide>
+        </Slide> */}
 
         <Slide bgColor="secondary"
           bgImage={images.styleGuide}
@@ -1365,11 +1434,11 @@ export default class Presentation extends Component {
           </Heading>
 
           <Layout style={{ flexWrap: 'wrap', justifyContent: 'center', alignItems: 'center' }}>
-            <Image src={images.github} style={{ margin: '0 .5em', height: '53px', width: '50px'}} />
+            <Image src={images.github} style={{ margin: '0.5em', width: '2em'}} />
             <Link
               textColor="tertiary"
               lineHeight={4}
-              style={{ margin: '0 .5em', fontSize: '1.5rem'}}
+              style={{ margin: '0 0.5em', fontSize: '1.5rem'}}
               href="https://seek-oss.github.io/seek-style-guide">
               seek-oss.github.io/seek-style-guide
             </Link>
@@ -1395,21 +1464,21 @@ export default class Presentation extends Component {
             Thank you
           </Heading>
           <br/>
-          <div style={{textAlign: 'left', maxWidth: '520px', margin: '0 auto'}}>
+          <div style={{textAlign: 'left', display: 'inline-block', margin: '0 auto'}}>
             <Text lineHeight={1.4} style={{display: 'flex', alignItems:'center', marginBottom: '10px'}}>
-              <Image src={images.twitter} style={{ margin: '0 20px 0 0', height: '53px', width: '50px'}} />
+              <Image src={images.twitter} style={{ margin: '0 0.5em 0 0', width: '1em'}} />
               <Link style={{fontSize: '1.5rem'}} textColor="tertiary" href="https://twitter.com/michaeltaranto">@michaeltaranto</Link>
             </Text>
             <Text lineHeight={1.4} style={{display: 'flex', alignItems:'center', marginBottom: '10px'}}>
-              <Image src={images.github} style={{ margin: '0 20px 0 0', height: '53px', width: '50px'}} />
+              <Image src={images.github} style={{ margin: '0 0.5em 0 0', width: '1em'}} />
               <Link style={{fontSize: '1.5rem'}} textColor="tertiary" href="https://github.com/michaeltaranto">github.com/michaeltaranto</Link>
             </Text>
             <Text lineHeight={1.4} style={{display: 'flex', alignItems:'center', marginBottom: '10px'}}>
-              <Image src={images.github} style={{ margin: '0 20px 0 0', height: '53px', width: '50px'}} />
+              <Image src={images.github} style={{ margin: '0 0.5em 0 0', width: '1em'}} />
               <Link style={{fontSize: '1.5rem'}} textColor="tertiary" href="https://github.com/michaeltaranto/basekick">github.com/michaeltaranto/basekick</Link>
             </Text>
             <Text lineHeight={1.4} style={{display: 'flex', alignItems:'center'}}>
-              <Image src={images.github} style={{ margin: '0 20px 0 0', height: '53px', width: '50px'}} />
+              <Image src={images.github} style={{ margin: '0 0.5em 0 0', width: '1em'}} />
               <Link style={{fontSize: '1.5rem'}} textColor="tertiary" href="https://seek-oss.github.io/seek-style-guide">seek-oss.github.io/seek-style-guide</Link>
             </Text>
           </div>
