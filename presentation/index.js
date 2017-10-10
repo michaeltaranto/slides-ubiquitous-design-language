@@ -93,7 +93,7 @@ const TextDemo = ({
   highlight = true
 }) => {
   return (
-    <Baseline style={{width: '100%'}} lineHeight={rowHeight * zoom} type="bar" color="rgba(0, 0, 0, 0.08)">
+    <Baseline style={{width: '100%'}} lineHeight={rowHeight * zoom} type="bar" color="rgba(0, 0, 0, 0.15)">
       <Card>
         <p style={{ position: 'relative', margin: 0, display: 'inline-block' }}>
           { highlight ?
@@ -208,7 +208,15 @@ export default class Presentation extends Component {
   render() {
     return (
       <Deck transition={[]} transitionDuration={250} theme={theme} bgcolor="tertiary">
-        <Slide bgColor="tertiary">
+        <Slide bgColor="tertiary" notes={(
+          <div>
+            its this intersection of disciplines that really excites me
+            <br /><br />
+            this talk is about how we've sought to improve collaboration and efficiency
+            <br /><br />
+            in how we design and build our products
+          </div>
+        )}>
           <Text bold textColor="primary" lineHeight={1.3}>
             Building a
           </Text>
@@ -342,9 +350,9 @@ export default class Presentation extends Component {
         {/*--------------------------*/}
         <Slide bgColor="secondary" notes={(
           <div>
-            This talk is about reducing the number of decisions to be made at build time
+            Stop focusing on the wireframes as the contract
             <br/><br/>
-            By building a language/system to solve these problems centrally
+            instead focus on the language
           </div>
         )}>
           <TertiaryHeading>
@@ -357,8 +365,9 @@ export default class Presentation extends Component {
             used at build-time
           </TertiaryHeading>
         </Slide>
+{/*
 
-        <Slide bgColor="secondary" notes="...would it look like this...">
+        <Slide bgColor="secondary" notes="...would it look like this, ...">
           <TertiaryHeading>
             What would an
           </TertiaryHeading>
@@ -369,8 +378,12 @@ export default class Presentation extends Component {
             look like?
           </TertiaryHeading>
         </Slide>
-
-        <Slide bgColor="secondary">
+*/}
+        <Slide bgColor="secondary" notes={(
+          <div>
+            Where structure, design, behaviour are all last minute composition responsibilities
+          </div>
+        )}>
           <CodePane
             lang="html"
             source={require("raw-loader!../assets/register-before.example")}
@@ -378,7 +391,7 @@ export default class Presentation extends Component {
           />
         </Slide>
 
-        <Slide bgColor="secondary" notes="What if we... how would that look?">
+        <Slide bgColor="secondary" notes="Or what if we... how would that look?">
           <TertiaryHeading>
             Strive for more
           </TertiaryHeading>
@@ -390,7 +403,9 @@ export default class Presentation extends Component {
           </PrimaryHeading>
         </Slide>
 
-        <Slide bgColor="secondary" notes="...So the language could be a lot cleaner and more semantic to your use case">
+        <Slide bgColor="secondary" notes={(
+          <div>...fewer concerns, simplifying the language, reducing the risk</div>
+        )}>
           <CodePane
             lang="jsx"
             source={require("raw-loader!../assets/register-after.example")}
@@ -400,13 +415,11 @@ export default class Presentation extends Component {
 
         <Slide bgColor="tertiary" notes={(
           <div>
-            - Remove build time ambiguity
+            By...
             <br/>
-            — Clearer conversations
-            <br/>
-            — Predictable experience
-            <br/>
-            — Approachable code
+            ...through our products
+            <br />
+            enabling solutions to go further
           </div>
         )}>
           <Heading size={5} fit caps textColor="secondary">
@@ -460,17 +473,7 @@ export default class Presentation extends Component {
         {/*-------------------------*/}
         {/*- Principles not pixels -*/}
         {/*-------------------------*/}
-        <Slide bgColor="secondary" notes={(
-          <div>
-            we have been shifting the discussion
-            <br/><br/>
-            principles not pixels
-          </div>
-        )}>
-          <Image src={images.seek} height="6em" />
-        </Slide>
-
-        <Slide bgColor="tertiary" notes="with the goal being to">
+        <Slide bgColor="tertiary" notes={'Instead see them as opportunities to...'}>
           <Heading size={5} fit caps textColor="secondary">
             Capture designer&rsquo;s
           </Heading>
@@ -482,7 +485,15 @@ export default class Presentation extends Component {
           </Heading>
         </Slide>
 
-        <Slide bgColor="secondary" notes="breaking down knowledge silos by... ...while enabling the solution to have greater reach">
+        <Slide bgColor="secondary" notes={(
+          <div>
+            been on journey to redefine how we collaborate
+          </div>
+        )}>
+          <Image src={images.seek} height="6em" />
+        </Slide>
+
+        <Slide bgColor="secondary" notes="breaking down knowledge silos attempting to... ...while enabling the solution to have greater reach">
           <TertiaryHeading>
             Distill design
           </TertiaryHeading>
@@ -494,7 +505,7 @@ export default class Presentation extends Component {
           </PrimaryHeading>
         </Slide>
 
-        <Slide bgColor="secondary" notes={"the first step has been"}>
+        <Slide bgColor="secondary" notes={"the first step has been...forming the basis of our communication"}>
           <TertiaryHeading>
             Remove pixel
           </TertiaryHeading>
@@ -509,7 +520,7 @@ export default class Presentation extends Component {
         {/*------------------------*/}
         {/*- ???Bridge missing??? -*/}
         {/*------------------------*/}
-
+{/*
         <Slide bgColor="secondary" notes="Get to the bottom of whats not working">
           <TertiaryHeading>
             Why do we
@@ -518,6 +529,7 @@ export default class Presentation extends Component {
             pixel nudge<span style={{color: theme.screen.colors.tertiary}}>?</span>
           </PrimaryHeading>
         </Slide>
+*/}
 
         <Slide bgColor="secondary" notes="...all about spacing between elements and text">
           <PrimaryHeading>
@@ -532,9 +544,18 @@ export default class Presentation extends Component {
         </Slide>
 
         <Slide bgColor="secondary" notes="so we started with....    It&rsquo;s just text&hellip;">
-          <TertiaryHeading>
-            Typography
-          </TertiaryHeading>
+          <Layout style={{ flexWrap: 'wrap', alignItems: 'center' }}>
+            <Fill style={{ padding: '0 0.6em', minWidth: '16em', margin: '1em 1em 1em 0' }}>  
+              <TertiaryHeading>
+                Typography
+              </TertiaryHeading>
+            </Fill>
+            <Fill>
+              <CodePane lang="jsx">
+                {`<Text>My heading</Text>`}
+              </CodePane>
+            </Fill>
+          </Layout>
         </Slide>
 
         <Slide bgColor="secondary" notes="Let's start with a heading">
@@ -644,7 +665,7 @@ export default class Presentation extends Component {
             }
           </CodePane>
         </Slide>
-
+{/*
         <Slide bgColor="secondary">
           <TertiaryHeading>
             Language is forming
@@ -656,20 +677,20 @@ export default class Presentation extends Component {
             {`<Text subheading>My subheading</Heading>`}
           </CodePane>
         </Slide>
-
+*/}
         <Slide bgColor="secondary">
           <TertiaryHeading>
-            Subheading:
+            Heading:
           </TertiaryHeading>
           <TertiaryHeading>
-            <MyCode>1.8</MyCode> scale over <MyCode>3</MyCode> rows
+            <MyCode>2.1</MyCode> scale over <MyCode>3</MyCode> rows
           </TertiaryHeading>
         </Slide>
-
+{/*
         <Slide bgColor="secondary" notes="consume in subheading class">
           <CodePane lang="css">
             {
-              `/* Design principles */
+              `// Design principles
                @base-font-size: 10px;
                @row-height: 9px;
 
@@ -692,9 +713,6 @@ export default class Presentation extends Component {
           </Heading>
         </Slide>
 
-        {/*-----------------------------*/}
-        {/*- Getting behind the pixels -*/}
-        {/*-----------------------------*/}
         <Slide bgColor="secondary">
           <Heading size={4} lineHeight={1.4} textColor="tertiary">
             Let&rsquo;s see it
@@ -704,6 +722,7 @@ export default class Presentation extends Component {
             {`<Text heading>My heading</Heading>`}
           </CodePane>
         </Slide>
+      */}
 
         <Slide bgColor="secondary">
           <Layout style={{flexWrap: 'wrap'}}>
@@ -786,7 +805,7 @@ export default class Presentation extends Component {
           </TertiaryHeading>
         </Slide>
 
-        <Slide bgColor="secondary" notes={'Improve the quality of the conversations... Fix it in the component'}>
+        <Slide bgColor="secondary" notes={'In order to improve the quality of the conversations... Fix it in the component'}>
           <TertiaryHeading>
             Aligning output
           </TertiaryHeading>
@@ -803,11 +822,11 @@ export default class Presentation extends Component {
             backgroundImage: `linear-gradient(${theme.screen.colors.primary} 50%, ${theme.screen.colors.tertiary} 50%)`
           }}>
           <Layout style={{
-              flexDirection: 'column',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-              minHeight: '22em'
-            }}>
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            minHeight: '22em'
+          }}>
             <TextDemo scale={2.1} rows={3} highlightDescender>
               Heading
             </TextDemo>
@@ -1031,6 +1050,24 @@ export default class Presentation extends Component {
           </Layout>
         </Slide>
 
+        <Slide bgColor="secondary">
+          <TertiaryHeading>
+            Subheading:
+          </TertiaryHeading>
+          <TertiaryHeading>
+            <MyCode>1.8</MyCode> scale over <MyCode>3</MyCode> rows
+          </TertiaryHeading>
+        </Slide>
+
+        <Slide bgColor="secondary">
+          <TertiaryHeading>
+            Standard:
+          </TertiaryHeading>
+          <TertiaryHeading>
+            <MyCode>1.4</MyCode> scale over <MyCode>2</MyCode> rows
+          </TertiaryHeading>
+        </Slide>
+
         <Slide bgColor="tertiary">
           <Heading size={3} fit caps textColor="primary">
             Talk in principles
@@ -1123,7 +1160,7 @@ export default class Presentation extends Component {
 
         {/*-----------------------------------------*/}
         {/*- Component API is your design language -*/}
-        {/*-----------------------------------------*/}
+        {/*-----------------------------------------
         <Slide bgColor="secondary">
           <TertiaryHeading>
             Language
@@ -1134,7 +1171,7 @@ export default class Presentation extends Component {
           <TertiaryHeading>
             from code
           </TertiaryHeading>
-        </Slide>
+        </Slide>*/}
 
         <Slide bgColor="tertiary" notes={(
           <div>
@@ -1240,20 +1277,20 @@ export default class Presentation extends Component {
         </Slide>
 
         <Slide bgColor="secondary">
-          <Text textColor="tertiary" textAlign="left">
-            — Faster
-          </Text>
+          <Heading textColor="tertiary" textAlign="left">
+            — Confidence
+          </Heading>
           <br/>
           <Appear style={{whiteSpace: 'nowrap'}}>
-            <Text textColor="tertiary" textAlign="left">
-              — Better discussions
-            </Text>
+            <Heading textColor="tertiary" textAlign="left">
+              — Efficiency
+            </Heading>
           </Appear>
           <br/>
           <Appear style={{whiteSpace: 'nowrap'}}>
-            <Text textColor="tertiary" textAlign="left">
-              — Consistent across experience
-            </Text>
+            <Heading textColor="tertiary" textAlign="left">
+              — Consistency
+            </Heading>
           </Appear>
         </Slide>
 
@@ -1301,7 +1338,7 @@ export default class Presentation extends Component {
               capturing as code allows sharing across teams
             </div>
           )}>
-          {/* <iframe
+          <iframe
             src="https://www.seek.com.au"
             height="100%"
             width="100%"
@@ -1313,7 +1350,7 @@ export default class Presentation extends Component {
               bottom: 0,
               right: 0
             }}
-          /> */}
+          />
         </Slide>
 
         <Slide
@@ -1426,7 +1463,7 @@ export default class Presentation extends Component {
 
         <Slide bgColor="secondary"
           bgImage={images.styleGuide}
-          bgDarken={0.85}
+          bgDarken={0.70}
           bgRepeat="repeat,no-repeat"
           bgPosition="center top">
           <Heading size={5} lineHeight={1.4} textColor="primary">
@@ -1445,7 +1482,15 @@ export default class Presentation extends Component {
           </Layout>
         </Slide>
 
-        <Slide bgColor="tertiary" notes="Solution has broader reach">
+        <Slide bgColor="tertiary" notes={(
+          <div>
+            Inspired
+            <br /><br />
+            Reflect on how you collaborate
+            <br /><br />
+            Deliver better experiences
+          </div>
+        )}>
           <Heading size={5} fit caps textColor="secondary">
             Help define
           </Heading>
